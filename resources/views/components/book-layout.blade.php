@@ -3,6 +3,9 @@
          <head>
          <title>{{$title}}</title>
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <style>
         .navbar {
          background-color: #ff5850;
@@ -33,18 +36,18 @@
             <div class='col-3 pr-0'>
 <nav class="navbar navbar-light">
 <ul class="navbar-nav">
-<li class="nav-item active">
-                            <a class="nav-link" href="{{url('sach')}}">Trang chủ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('sach/theloai/1')}}">Tiểu thuyết</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('sach/theloai/2')}}">Truyện ngắn - Tản văn</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('sach/theloai/3')}}">Tác phẩm kinh điển</a>
-                        </li>
+    <li class="nav-item active">
+        <a class="nav-link menu-the-loai" href="#" the_loai="">Trang chủ</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link menu-the-loai" href="#" the_loai="1">Tiểu thuyết</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link menu-the-loai" href="#" the_loai="2">Truyện ngắn - tản văn</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link menu-the-loai" href="#" the_loai="3">Tác phẩm kinh điển</a>
+    </li>
 </ul>
 </nav>
 <img src="{{asset('images/sidebar_1.jpg')}}"width="100%"class='mt-1'>

@@ -26,3 +26,4 @@ require __DIR__.'/auth.php';
 Route::get('/sach','App\Http\Controllers\LayoutController@sach');
 Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
 Route::get('/sach/chitiet/{id}','App\Http\Controllers\BookController@chitiet');
+Route::match(['get', 'post'], '/bookview', 'App\Http\Controllers\BookController@bookview')->name("bookview");
