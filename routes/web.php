@@ -23,6 +23,5 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/sach','App\Http\Controllers\LayoutController@sach');
-Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
-Route::get('/sach/chitiet/{id}','App\Http\Controllers\BookController@chitiet');
+Route::get('/testemail', [App\Http\Controllers\BookController::class, 'testemail']);
+Route::post('/order/create', [App\Http\Controllers\BookController::class, 'ordercreate'])->middleware('auth')->name('ordercreate');
