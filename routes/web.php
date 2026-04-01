@@ -41,3 +41,4 @@ Route::post('/book/delete','App\Http\Controllers\BookController@bookdelete')
         ->middleware('auth')->name("bookdelete");
 
 
+Route::match(['get', 'post'], '/bookview', 'App\Http\Controllers\BookController@bookview')->name("bookview");
