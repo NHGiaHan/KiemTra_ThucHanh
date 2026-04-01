@@ -90,6 +90,8 @@ class BookController extends Controller
     }
 
     return view("bookview", compact("data"));
+    }
+
     public function testemail()
     {
         $user = User::find(2); 
