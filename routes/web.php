@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,6 +24,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/','App\Http\Controllers\LayoutController@sach');
+Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
+Route::get('/sach/chitiet/{id}','App\Http\Controllers\BookController@chitiet');
+
+Route::get('/accountpanel','App\Http\Controllers\AccountController@accountpanel')
+->middleware('auth')->name("account");
+Route::post('/saveaccountinfo','App\Http\Controllers\AccountController@saveaccountinfo')
+->middleware('auth')->name('saveinfo');
 Route::get('/sach','App\Http\Controllers\LayoutController@sach') ->name("order");
 Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
 Route::get('/sach/chitiet/{id}','App\Http\Controllers\BookController@chitiet');
