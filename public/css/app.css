@@ -697,9 +697,6 @@ input:where([type='file']):focus {
   outline: 1px solid ButtonText;
   outline: 1px auto -webkit-focus-ring-color;
 }
-.collapse {
-  visibility: collapse;
-}
 .fixed {
   position: fixed;
 }
@@ -857,9 +854,6 @@ input:where([type='file']):focus {
 .shrink-0 {
   flex-shrink: 0;
 }
-.border-collapse {
-  border-collapse: collapse;
-}
 .origin-top {
   transform-origin: top;
 }
@@ -921,6 +915,9 @@ input:where([type='file']):focus {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.break-all {
+  word-break: break-all;
 }
 .rounded {
   border-radius: 0.25rem;

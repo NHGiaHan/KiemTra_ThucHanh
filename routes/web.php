@@ -50,3 +50,6 @@ Route::post('/book/delete','App\Http\Controllers\BookController@bookdelete')
         ->middleware('auth')->name("bookdelete");
 
 
+Route::match(['get', 'post'], '/bookview', 'App\Http\Controllers\BookController@bookview')->name("bookview");
+Route::get('/testemail', [App\Http\Controllers\BookController::class, 'testemail']);
+Route::post('/order/create', [App\Http\Controllers\BookController::class, 'ordercreate'])->middleware('auth')->name('ordercreate');
