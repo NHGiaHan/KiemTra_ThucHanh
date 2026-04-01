@@ -27,6 +27,35 @@ require __DIR__.'/auth.php';
 Route::get('/','App\Http\Controllers\LayoutController@sach');
 Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
 Route::get('/sach/chitiet/{id}','App\Http\Controllers\BookController@chitiet');
+Route::get('/test-email', function() {
+    return "Cấu hình email đã sẵn sàng. Bạn có thể test gửi mail!";
+});
+use App\Models\User;
+
+Route::get('/test-reset-email', function() {
+    // Lấy user đầu tiên trong database
+    $user = User::first();
+    
+    if (!$user) {
+        return "Chưa có user nào! Vui lòng tạo user trước.";
+    }
+    
+    try {
+        $user->sendPasswordResetNotification('test-token-' . time());
+        return "✅ Đã gửi email test đến: " . $user->email . "<br>Kiểm tra hộp thư để xem nội dung tùy chỉnh!";
+    } catch (\Exception $e) {
+        return "❌ Lỗi: " . $e->getMessage();
+    }
+});
+Route::get('/check-db', function() {
+    try {
+        DB::connection()->getPdo();
+        $dbName = DB::connection()->getDatabaseName();
+        return "✅ Kết nối thành công! Database đang dùng: " . $dbName;
+    } catch (\Exception $e) {
+        return "❌ Lỗi: " . $e->getMessage();
+    }
+});
 
 Route::get('/accountpanel','App\Http\Controllers\AccountController@accountpanel')
 ->middleware('auth')->name("account");
