@@ -1,5 +1,4 @@
 <x-book-layout>
-
 <x-slot name="title">Trang chủ</x-slot>
 <div id='book-view-div'>
     <div class='list-book'>
@@ -23,6 +22,7 @@
         @endforeach
     </div>
 </div>
+</x-book-layout>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
     <script>
         $(document).ready(function() {
