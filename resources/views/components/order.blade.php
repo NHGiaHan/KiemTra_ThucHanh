@@ -4,9 +4,14 @@
     </x-slot>
 
     <div>
+        @if(session('success'))
+            <div class="alert alert-success text-center" style="width:70%; margin:10px auto;">
+                {{ session('success') }}
+            </div>
+         @endif
         <div style='color:#15c; font-weight:bold;font-size:15px;text-align:center'>DANH SÁCH SẢN PHẨM</div>
         
-            <table class='book-table' style='margin:0 auto; width:70%'>
+            <table class='book-table table table-bordered' style='margin:0 auto; width:70%'>
                 <thead>
                     <th>STT</th>
                     <th>Tên sách</th>

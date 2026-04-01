@@ -65,34 +65,48 @@ Route::post('/saveaccountinfo','App\Http\Controllers\AccountController@saveaccou
 Route::get('/sach','App\Http\Controllers\LayoutController@sach') ->name("order");
 Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
 Route::get('/sach/chitiet/{id}','App\Http\Controllers\BookController@chitiet');
-// Thêm dòng này vào cuối file web.php
-Route::get('/profile', function () {
-    return "Trang thông tin cá nhân";
-})->middleware(['auth'])->name('account');
-Route::get('/order','App\Http\Controllers\BookController@order')->name('order');
+
+Route::middleware(['auth'])->group(function () {
+
+    // Trang hồ sơ
+    Route::get('/profile', function () {
+        $user = Auth::user();
+        return view('vidusach.account_display', compact('user'));
+    })->name('account');
+
+    // Trang chỉnh sửa
+    Route::get('/profile/edit', function () {
+        $user = Auth::user();
+        return view('vidusach.account', compact('user'));
+    })->name('account_edit');
+
+    // Lưu thông tin
+    Route::post('/profile/update', 'App\Http\Controllers\AccountController@saveaccountinfo')
+        ->name('saveinfo');
+
+    Route::get('/order','App\Http\Controllers\BookController@order')->name('order');
 Route::post('/cart/add', 'App\Http\Controllers\BookController@cartadd')->name('cartadd');
 
 
-Route::post('/cart/delete', 'App\Http\Controllers\BookController@cartdelete')->name('cartdelete');
+    Route::post('/cart/delete', 'App\Http\Controllers\BookController@cartdelete')->name('cartdelete');
 
-Route::post('/order/create', 'App\Http\Controllers\BookController@ordercreate')
-    ->middleware(['auth'])
-    ->name('ordercreate');
+    Route::post('/order/create', 'App\Http\Controllers\BookController@ordercreate')
+        ->name('ordercreate');
 
-Route::get('/bookview', 'App\Http\Controllers\BookController@bookview')->name('bookview');
+    Route::get('/bookview', 'App\Http\Controllers\BookController@bookview')->name('bookview');
 
+    Route::get('/book/list','App\Http\Controllers\BookController@booklist')
+        ->name("booklist");
 
-Route::get('/book/list','App\Http\Controllers\BookController@booklist')
-->middleware('auth')->name("booklist");
-
-Route::get('/book/create','App\Http\Controllers\BookController@bookcreate')
-        ->middleware('auth')->name("bookcreate");
-Route::get('/book/edit/{id}','App\Http\Controllers\BookController@bookedit')
-        ->middleware('auth')->name("bookedit");
-Route::post('/book/save/{action}','App\Http\Controllers\BookController@booksave')
-        ->middleware('auth')->name("booksave");
-Route::post('/book/delete','App\Http\Controllers\BookController@bookdelete')
-        ->middleware('auth')->name("bookdelete");
+    Route::get('/book/create','App\Http\Controllers\BookController@bookcreate')
+        ->name("bookcreate");
+    Route::get('/book/edit/{id}','App\Http\Controllers\BookController@bookedit')
+        ->name("bookedit");
+    Route::post('/book/save/{action}','App\Http\Controllers\BookController@booksave')
+        ->name("booksave");
+    Route::post('/book/delete','App\Http\Controllers\BookController@bookdelete')
+        ->name("bookdelete");
+});
 
 
 Route::match(['get', 'post'], '/bookview', 'App\Http\Controllers\BookController@bookview')->name("bookview");

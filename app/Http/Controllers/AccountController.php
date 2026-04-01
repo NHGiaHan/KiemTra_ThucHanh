@@ -25,8 +25,10 @@ class AccountController extends Controller
 
         $id = $request->input('id');
         $data["name"] = $request->input("name");
-        $data["phone"] = $request->input("phone");
         $data["email"] = $request->input("email");
+
+        if (\Schema::hasColumn('users', 'phone')) {
+            $data["phone"] = $request->input("phone");
 
         if ($request->hasFile('photo')) {
             $fileName = Auth::user()->id . "." . $request->file('photo')->extension();
@@ -38,4 +40,4 @@ class AccountController extends Controller
 
         return redirect()->route('account')->with('status', 'Cập nhật thành công');
     }
-}
+    }}
